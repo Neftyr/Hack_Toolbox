@@ -9,7 +9,7 @@ contract HackerScript is Script {
     address private constant TARGET = 0x5c2405e0e4EE969d19C6F6300a98c0937483B7Ac;
 
     function run() external {
-        uint256 deployerKey = vm.envUint("S_PRIVATE_KEY");
+        uint256 deployerKey = vm.envUint("PRIVATE_KEY");
 
         vm.startBroadcast(deployerKey);
         (bool success, ) = TARGET.call(abi.encodeWithSignature("hackNFT()"));
