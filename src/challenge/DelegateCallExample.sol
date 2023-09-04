@@ -8,10 +8,12 @@ contract B {
     address public sender;
     uint256 public value;
 
-    function setVars(uint256 _num) public payable {
+    function setVars(uint256 _num) public payable returns (uint256) {
         num = _num;
         sender = msg.sender;
         value = msg.value;
+
+        return num;
     }
 }
 
@@ -25,6 +27,7 @@ contract A {
         uint256 result;
 
         // A's storage is set, B is not modified.
+        /** @dev To read data function from delegatecall must return something */
         (bool success, bytes memory data) = _contract.delegatecall(abi.encodeWithSignature("setVars(uint256)", _num));
 
         if (success) {
