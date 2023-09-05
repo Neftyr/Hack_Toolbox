@@ -2,7 +2,6 @@
 
 pragma solidity ^0.8.18;
 
-import {AFoundryCourseChallenge} from "./AFoundryCourseChallenge.sol";
 import {LessonThirteenHelper} from "./LessonThirteenHelper.sol";
 
 interface YourContract {
@@ -11,7 +10,7 @@ interface YourContract {
     function getNumber() external view returns (int256);
 }
 
-contract LessonThirteen is AFoundryCourseChallenge {
+contract LessonThirteen {
     error LessonThirteen__NotSolved();
 
     string private constant LESSON_IMAGE = "ipfs://QmdHgyTYLg3hpjMdf6D9nE7Udwubxk2WvmJtv2KewCd6KM";
@@ -31,7 +30,7 @@ contract LessonThirteen is AFoundryCourseChallenge {
      * @param yourContract = the contract you're using to solve this
      * @param yourTwitterHandle - Your twitter handle. Can be a blank string.
      */
-    function solveChallenge(address yourContract, string memory yourTwitterHandle) external {
+    function solveChallenge(address yourContract, string memory /* yourTwitterHandle */) external {
         YourContract yc = YourContract(yourContract);
         int256 number = yc.getNumber();
         address yourOwner = yc.owner();

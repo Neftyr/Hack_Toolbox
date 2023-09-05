@@ -3,26 +3,26 @@ pragma solidity ^0.8.19;
 
 import {Script, console} from "forge-std/Script.sol";
 
-contract HackExploit is Script {
+contract StorageReader is Script {
     error Challenge__HackFailed();
 
-    address private constant TARGET = 0xe5760847db2f10A74Fc575B4803df5fe129811C1;
-    address private constant HACKER = 0xcb11F38172fb2552938C2eEAf873339029DD52e3;
+    // 0x643315C9Be056cDEA171F4e7b2222a4ddaB9F88D
+    // 572038313094850821099624258919152072749626292365
+
+    address private constant TARGET = 0xaFa4150818b7843345A5E54E430Bd0cAE31B5c0C;
+    address private constant HACKER = 0x50e2a33B9E04e78bF1F1d1F94b0be95Be63C23e7;
 
     function run() external {
-        uint256 deployerKey = vm.envUint("PRIVATE_KEY");
-
-        vm.startBroadcast(deployerKey);
-
-        printStorageData(TARGET);
-
-        vm.stopBroadcast();
+        vm.startPrank(HACKER);
+        getStorageData(TARGET);
+        vm.stopPrank();
     }
 
-    function printStorageData(address contractAddress) public view {
+    function getStorageData(address targetContract) public view {
         for (uint256 i = 0; i <= 6; i++) {
-            bytes32 value = vm.load(contractAddress, bytes32(i));
+            bytes32 value = vm.load(targetContract, bytes32(i));
             console.log("Value at location", i, ":");
+            console.log("String: ", string(abi.encodePacked(value)));
             console.log("Address: ", address(uint160(uint256(value))));
             console.log("Number: ", uint256(value));
             console.logBytes32(value);

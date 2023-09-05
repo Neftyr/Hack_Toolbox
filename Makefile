@@ -10,8 +10,11 @@ ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
 	NETWORK_ARGS := --rpc-url $(SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
 endif
 
-deployHack:
-	@forge script script/challenge/DeployExploitContract.s.sol:DeployExploitContract $(NETWORK_ARGS)
+deployThief:
+	@forge script script/DeployThief.s.sol:DeployThief $(NETWORK_ARGS)
 
 hack:
-	@forge script script/challenge/HackExploit.s.sol:HackExploit $(NETWORK_ARGS)
+	@forge script script/StorageReader.s.sol:StorageReader $(NETWORK_ARGS)
+
+steal:
+	@forge script script/HackerScript.s.sol:HackerScript $(NETWORK_ARGS)
