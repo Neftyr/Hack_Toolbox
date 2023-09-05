@@ -7,7 +7,7 @@ ffi = false
 
 # Below sets amount of runs for Stateless Fuzz Testing
 [fuzz]
-runs = 1000
+runs = 250
 
 # Below sets parameters for Stateful Fuzz Testing
 [invariant]

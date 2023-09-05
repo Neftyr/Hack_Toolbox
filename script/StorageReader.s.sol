@@ -6,11 +6,9 @@ import {Script, console} from "forge-std/Script.sol";
 contract StorageReader is Script {
     error Challenge__HackFailed();
 
-    // 0x643315C9Be056cDEA171F4e7b2222a4ddaB9F88D
-    // 572038313094850821099624258919152072749626292365
-
     address private constant TARGET = 0xaFa4150818b7843345A5E54E430Bd0cAE31B5c0C;
     address private constant HACKER = 0x50e2a33B9E04e78bF1F1d1F94b0be95Be63C23e7;
+    address private constant PROXY = 0x0aEd31F9Be33403A0D38d886d8b1199996F2A864;
 
     function run() external {
         vm.startPrank(HACKER);
