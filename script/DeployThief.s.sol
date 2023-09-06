@@ -2,14 +2,14 @@
 pragma solidity ^0.8.19;
 
 import {Script} from "forge-std/Script.sol";
-import {Thief_v13} from "../src/Thief_v13.sol";
+import {Thief} from "../src/Thief.sol";
 
 contract DeployThief is Script {
-    function run() external returns (Thief_v13) {
+    function run() external returns (Thief) {
         uint256 deployerKey = vm.envUint("PRIVATE_KEY");
 
         vm.startBroadcast(deployerKey);
-        Thief_v13 thief = new Thief_v13();
+        Thief thief = new Thief();
         vm.stopBroadcast();
 
         return (thief);

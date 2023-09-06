@@ -12,11 +12,13 @@ contract Hastur_v13 is Script {
     string private constant NICK = "nseen18";
 
     function run() external {
-        //vm.startBroadcast(HACKER);
-        vm.startPrank(HACKER);
+        vm.startBroadcast(HACKER);
+        //vm.startPrank(HACKER);
+
         (bool success, ) = TARGET.call(abi.encodeWithSignature("solveChallenge(address,string)", ATTACKER, NICK));
         if (!success) revert Challenge__HackFailed();
-        vm.stopPrank();
-        //vm.stopBroadcast();
+
+        vm.stopBroadcast();
+        //vm.stopPrank();
     }
 }

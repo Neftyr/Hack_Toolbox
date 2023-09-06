@@ -24,3 +24,6 @@ hack:
 
 hastur_v13:
 	@forge script script/Hastur_v13.s.sol:Hastur_v13 $(NETWORK_ARGS)
+
+thief:
+	@forge script script/ThiefScript.s.sol:ThiefScript $(NETWORK_ARGS)
