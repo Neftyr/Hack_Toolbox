@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.18;
+pragma solidity ^0.8.19;
 
 contract Thief {
     error Thief__HackFailed();
@@ -14,6 +14,7 @@ contract Thief {
         owner = msg.sender;
     }
 
+    /** @dev Below will not work for challenge as this call will be always made by this contract (so there will be owner error) */
     function lastHack() external {
         (bool success, ) = TARGET.call(abi.encodeWithSignature("solveChallenge(address,bytes4,string)", address(this), SELECTOR, HACKER));
         if (!success) revert Thief__HackFailed();
