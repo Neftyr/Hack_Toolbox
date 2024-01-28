@@ -15,6 +15,9 @@ endif
 
 build :; forge build
 
+deploy:
+	@forge script script/DeployCalypto.s.sol:DeployCalypto $(NETWORK_ARGS)
+
 deployThief:
 	@forge script script/DeployThief.s.sol:DeployThief $(NETWORK_ARGS)
 
@@ -29,3 +32,9 @@ hastur_v13:
 
 thief:
 	@forge script script/ThiefScript.s.sol:ThiefScript $(NETWORK_ARGS)
+
+updater:
+	@forge script script/Updater.s.sol:Updater $(NETWORK_ARGS)
+
+calypto:
+	@forge script script/CalyptoHack.s.sol:CalyptoHack $(NETWORK_ARGS)
